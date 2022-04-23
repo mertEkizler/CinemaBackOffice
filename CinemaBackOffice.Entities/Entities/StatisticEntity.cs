@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using CinemaBackOffice.Entities.Entities.Common;
+using System.Collections.Generic;
 
 namespace CinemaBackOffice.Entities.Entities
 {
-    public class StatisticEntity
+    public class StatisticEntity : IEntity
     {
         public int Id { get; set; }
 

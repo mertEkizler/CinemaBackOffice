@@ -2,7 +2,7 @@
 
 namespace CinemaBackOffice.Entities.Entities.Common
 {
-    public abstract class TeamMemberEntity
+    public abstract class TeamMember
     {
         public string Name { get; set; }
 

@@ -3,7 +3,7 @@ using System;
 
 namespace CinemaBackOffice.Entities.Entities
 {
-    public class ManagementEntity : TeamMemberEntity, IEntity
+    public class ManagementEntity : TeamMember, IEntity
     {
         public Guid Id { get; set; }
     }
