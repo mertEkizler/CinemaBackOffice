@@ -2,11 +2,16 @@
 using CinemaBackOffice.Entities.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 
 namespace CinemaBackOffice.Entities.Entities
 {
     public class MovieEntity : IEntity
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -29,7 +34,32 @@ namespace CinemaBackOffice.Entities.Entities
 
         public int TotalViewers { get; set; }
 
-        public Language Language { get; set; }
+        [NotMapped]
+        public Language? Language { get; set; }
+
+        [StringLength(128)]
+        [Column(nameof(Language))]
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public string LanguageString
+        {
+            get
+            {
+                if (Language == null)
+                {
+                    return null;
+                }
+                return Language.ToString();
+            }
+            private set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    Language = (Language)Enum.Parse(typeof(Language), value, true);
+                }
+            }
+        }
 
         public virtual DirectorEntity Director { get; set; }
 
